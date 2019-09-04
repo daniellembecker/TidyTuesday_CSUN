@@ -71,6 +71,7 @@ ggplot(all.dat, aes(transistor_count, area, size = Process, color = Type)) +
   labs(title = 'Year: {frame_time}', x = 'Area', y = 'Transistor Count') + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
   transition_time(date_of_introduction) +
+  shadow_mark() +
   ease_aes('linear')
 
 # Save as gif:
