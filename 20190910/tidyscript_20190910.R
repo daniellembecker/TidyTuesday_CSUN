@@ -46,7 +46,7 @@ all.dat <- left_join(statepop, safer_parks)
 
 plot_usmap(data = all.dat, values = "n", lines = "red") + 
   scale_fill_continuous(
-    low = "yellow", high = "red", name = "Number Individuals Injured", label = scales::comma
+    low = "light blue", high = "dark blue", name = "Number Individuals Injured", label = scales::comma
   ) + theme(legend.position = "top")
 
 ggsave(filename = "20190910/amusement.injuries.png", device = "png", width = 30, height = 30)
