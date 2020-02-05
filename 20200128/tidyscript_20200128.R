@@ -37,7 +37,7 @@ trees.final <- trees.genus %>%
   
 
 #define the hierarchy (Session/Room/Speaker)
-trees.final$pathString <- paste("San Francisco", trees.final$caretaker, trees.final$general.place, trees.final$genus, sep="|")
+trees.final$pathString <- paste("San Francisco", trees.final$caretaker, trees.final$specific.place, trees.final$genus, sep="|")
 
 #convert to Node
 useRtree <- as.Node(trees.final, pathDelimiter = "|")
@@ -45,4 +45,6 @@ useRtree <- as.Node(trees.final, pathDelimiter = "|")
 #plot with networkD3
 useRtreeList <- ToListExplicit(useRtree, unname = TRUE)
 radialNetwork( useRtreeList)
+
+
 
