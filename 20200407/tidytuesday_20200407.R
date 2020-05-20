@@ -25,6 +25,7 @@ tdf <- tdf_winners %>%
 
 #make bar plot of the winners per country over the years
 
+
 ggplot(tdf, aes(x = birth_country, y = time_overall, fill = birth_country)) + 
   geom_boxplot() +
   scale_fill_scico_d(palette = 'tokyo') +
@@ -34,8 +35,9 @@ ggplot(tdf, aes(x = birth_country, y = time_overall, fill = birth_country)) +
        y = "Overall Race Times") + 
   theme(legend.position = "none")
 
+
 ggsave(filename = "20200407/race times per country.png")
 
-
+ 
 
 
