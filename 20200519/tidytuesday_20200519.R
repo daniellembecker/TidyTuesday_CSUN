@@ -71,10 +71,16 @@ ggplot()+
   geom_point(aes(x = datasum.vb$x, y =datasum.vb$y, size = datasum.vb$measurement), color = "white") +
   geom_image(aes(image = datasum.vb$image_path), x = datasum.vb$x, y =datasum.vb$y, 
              size = (datasum.vb$measurement)/10) +
-  annotate("text", label = "Losers", x = 1.18, y = 1.93, color = "black", size = 8, fontface = 2) +
-  annotate("text", label = "Winners", x = 1.83, y = 1.93, color = "black", size = 8, fontface = 2) +
+  annotate("text", label = "Losers", x = 1.2, y = 1.93, color = "black", size = 8, fontface = 2) +
+  annotate("text", label = "Winners", x = 1.81, y = 1.93, color = "black", size = 8, fontface = 2) +
+  annotate("label", label = "Blocks", x = 1.805, y = 1.6, color = "black", size = 4, fontface = 2) +
+  annotate("label", label = "Blocks", x = 1.2, y = 1.65, color = "black", size = 4, fontface = 2) +
+  annotate("label", label = "Aces", x = 1.2, y = 1.17, color = "black", size = 4, fontface = 2) +
+  annotate("label", label = "Aces", x = 1.805, y = 1.15, color = "black", size = 4, fontface = 2) +
   theme(legend.position = "none", axis.title = element_blank(), axis.text = element_blank(), 
         axis.ticks = element_blank()) 
+
+ggsave(filename = "20200519/volleyballcourt.png", device = "png", width = 6, height = 5)
 
 #make volleyball graphic
 list.emojifonts()
@@ -88,7 +94,5 @@ rasterImage(img, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
 points(datasum.vb$x, datasum.vb$y, cex = datasum.vb$measurement)
 
 
-#size = measurement, color = move, geom_point, four poitns diff sizes and colors, add annotate write losers, winners x and y coords
-#ggplot, make x and y axes dissapper, geom texct to add labels 1.2, 1.8 winners and losers labesl in those areas
-#1.1, 1.6 aces and blocks, labels in court 
+
 
