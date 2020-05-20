@@ -47,16 +47,19 @@ vb_next <- data_long %>%
 #delete two rows for p1 and tot
 vb_next1 <- vb_next[ -c(3) ]
 
+#group by outcome and move and take the average of for w and l and for blocks and aces
 datasum.vb <- vb_next1 %>% 
   group_by(outcome, move) %>% 
   summarise(measurement = mean(measurement, na.rm = TRUE))
 
-#make column with =x andx y points
+#make column with x andx y coords in data frame
 datasum.vb$x <- c(1.2, 1.2, 1.8, 1.8)
 datasum.vb$y <-  c(1.25, 1.75, 1.25, 1.75)
+
+#add image to data frame to pull into plot later
 datasum.vb$image_path = "20200519/volleyball.png"
 
-
+#view datasum
 datasum.vb
 
 #import my background image
@@ -64,34 +67,24 @@ img <- readPNG("20200519/court.png")
 
 
 #make ggplot with background image
-ggplot()+
+ggplot()+ 
   background_image(img) +
-  xlim(1:2) +
+  xlim(1:2) +  #set limits for background image on ggplot
   ylim(1:2) +
-  geom_point(aes(x = datasum.vb$x, y =datasum.vb$y, size = datasum.vb$measurement), color = "white") +
+  geom_point(aes(x = datasum.vb$x, y =datasum.vb$y, size = datasum.vb$measurement), color = "white") + #add set points for averages
   geom_image(aes(image = datasum.vb$image_path), x = datasum.vb$x, y =datasum.vb$y, 
-             size = (datasum.vb$measurement)/10) +
-  annotate("text", label = "Losers", x = 1.2, y = 1.93, color = "black", size = 8, fontface = 2) +
+             size = (datasum.vb$measurement)/10) + #add image to feom_points, reference size 
+  annotate("text", label = "Losers", x = 1.2, y = 1.93, color = "black", size = 8, fontface = 2) + #add text to plot
   annotate("text", label = "Winners", x = 1.81, y = 1.93, color = "black", size = 8, fontface = 2) +
   annotate("label", label = "Blocks", x = 1.805, y = 1.6, color = "black", size = 4, fontface = 2) +
-  annotate("label", label = "Blocks", x = 1.2, y = 1.65, color = "black", size = 4, fontface = 2) +
+  annotate("label", label = "Blocks", x = 1.2, y = 1.65, color = "black", size = 4, fontface = 2) + #add text to plot, chnage to "labels" to put box around text
   annotate("label", label = "Aces", x = 1.2, y = 1.17, color = "black", size = 4, fontface = 2) +
   annotate("label", label = "Aces", x = 1.805, y = 1.15, color = "black", size = 4, fontface = 2) +
   theme(legend.position = "none", axis.title = element_blank(), axis.text = element_blank(), 
-        axis.ticks = element_blank()) 
+        axis.ticks = element_blank())  #remove acces labels and legend
 
 ggsave(filename = "20200519/volleyballcourt.png", device = "png", width = 6, height = 5)
 
-#make volleyball graphic
-list.emojifonts()
-load.emojifont('OpenSansEmoji.ttf')
-
-#Set up the plot area
-plot(1:2, type='n', main="", xlab="x", ylab="y")
-
-lim <- par()
-rasterImage(img, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
-points(datasum.vb$x, datasum.vb$y, cex = datasum.vb$measurement)
 
 
 
